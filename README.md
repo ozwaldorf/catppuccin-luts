@@ -33,6 +33,10 @@
 <summary>🌿 Mocha</summary>
 <img src="examples/mocha.png"/>
 </details>
+<details>
+<summary>⚫ Oled</summary>
+<img src="examples/oled.png"/>
+</details>
 
 ## Usage
 
