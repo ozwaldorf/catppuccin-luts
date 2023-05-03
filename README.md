@@ -17,6 +17,8 @@
 
 ## Previews
 
+> Generated using `noise_2` variant
+
 <details>
 <summary>🌻 Latte</summary>
 <img src="examples/latte.png"/>
@@ -43,13 +45,13 @@
 Images:
 
 ```bash
-magick input.png src/mocha.png -hald-clut output.png
+magick input.png src/noise_2/mocha.png -hald-clut output.png
 ```
 
 Videos:
 
 ```bash
-ffmpeg -i input.mkv -i src/mocha.png -filter_complex '[0][1] haldclut' output.mp4
+ffmpeg -i input.mkv -i src/noise_2/mocha.png -filter_complex '[0][1] haldclut' output.mp4
 ```
 
 ### (Re)generating LUTs

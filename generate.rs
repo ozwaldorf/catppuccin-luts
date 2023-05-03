@@ -14,16 +14,14 @@ use image::{
 };
 
 fn main() {
-    std::fs::create_dir("./src").ok();
+    std::fs::create_dir("src").ok();
 
     println!("Generating catppuccin LUTs: ");
 
     for flavor in Flavour::into_iter() {
-        // Get our colors and create an image buffer
         let name = flavor.name();
-        print!("{name} ...");
-        stdout().flush().ok();
 
+        // Create a temporary palette from our colors if it doesn't exist
         let palette_path = &format!("/tmp/{name}.png");
         if !PathBuf::from(palette_path).exists() {
             let colors: Vec<Colour> = flavor.colours().into_iter().collect();
@@ -36,23 +34,31 @@ fn main() {
                 *pixel = Rgb([r, g, b]);
             }
 
-            // Resize the palette for convenience
+            // Resize the palette for convenience and save it
             resize(&palette, len * 20, 20, FilterType::Nearest)
                 .save(palette_path)
                 .expect("error saving pallet image");
         }
 
-        // Generate the LUT from the pallet image
-        let output = Command::new("sh")
-            .arg("-c")
-            .arg(format!("convert HALD:8 -duplicate 512 -attenuate 2 +noise Gaussian -quantize LAB +dither -remap {palette_path} -evaluate-sequence Mean src/{name}.png"))
-            .output()
-            .expect("failed to execute process");
+        for noise_level in 1..5 {
+            let dir = &format!("src/noise_{noise_level}");
+            std::fs::create_dir(dir).ok();
 
-        if !output.status.success() {
-            panic!("magick: {}", String::from_utf8_lossy(&output.stderr));
+            print!("\r{name} ... ({noise_level}/4)");
+            stdout().flush().ok();
+
+            // Generate the LUT from the pallet image
+            let output = Command::new("sh")
+                .arg("-c")
+                .arg(format!("convert HALD:8 -duplicate 512 -attenuate {noise_level} +noise Gaussian -quantize LAB +dither -remap {palette_path} -evaluate-sequence Mean {dir}/{name}.png"))
+                .output()
+                .expect("failed to execute process");
+
+            if !output.status.success() {
+                panic!("magick: {}", String::from_utf8_lossy(&output.stderr));
+            }
         }
 
-        println!("\r{name} ✓  ");
+        println!("\r{name} ✓        ");
     }
 }
