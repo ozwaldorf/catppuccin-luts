@@ -1,15 +1,6 @@
 //# image = "0.24.6"
 //# catppuccin = "1.2.1"
-/// Generate pallets of colours for each flavour of catppuccin.
-///
-/// ## Usage
-///
-/// Requirements: cargo-play, ImageMagick
-///
-/// ```text
-/// cargo play generate.rs
-/// ```
-///
+
 use std::{
     io::{stdout, Write},
     path::PathBuf,

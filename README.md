@@ -11,6 +11,10 @@
 	<a href="https://github.com/ozwaldorf/catppuccin-luts/contributors"><img src="https://img.shields.io/github/contributors/ozwaldorf/catppuccin-luts?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
+<p align="center">
+	<img src="examples/preview.png"/>
+</p>
+
 ## Previews
 
 <details>
