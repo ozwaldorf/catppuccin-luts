@@ -13,10 +13,11 @@ use image::{
 };
 
 fn main() {
-    println!("Generating catppuccin LUTs: ");
-
+    // Ensure directories exist
     std::fs::create_dir("./palettes").ok();
     std::fs::create_dir("./src").ok();
+
+    println!("Generating catppuccin LUTs: ");
 
     for flavor in Flavour::into_iter() {
         // Get our colors and create an image buffer
@@ -28,13 +29,13 @@ fn main() {
         let len = colors.len() as u32;
         let mut palette = ImageBuffer::new(len, 1);
 
-        //
+        // Place the colors one after another in the buffer
         for (pixel, color) in palette.pixels_mut().zip(colors.into_iter()) {
             let (r, g, b) = color.into();
             *pixel = Rgb([r, g, b]);
         }
 
-        // Resize the image for convenience
+        // Resize the palette for convenience
         let palette_path = &format!("palettes/{name}.png");
         resize(&palette, len * 20, 20, FilterType::Nearest)
             .save(palette_path)

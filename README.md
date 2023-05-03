@@ -50,7 +50,7 @@ ffmpeg -i input.mkv -i src/mocha.png -filter_complex '[0][1] haldclut' output.mp
 
 ### (Re)generating LUTs
 
-Requirements: [cargo-play](https://crates.io/crates/cargo-play)
+Requirements: [cargo-play](https://crates.io/crates/cargo-play), [imagemagick](https://imagemagick.org)
 
 ```bash
 cargo play generate.rs
