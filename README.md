@@ -1,7 +1,7 @@
 <h3 align="center">
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
-	Catppuccin for ImageMagick (Lookup Tables)
+	Catppuccin Lookup Tables (Hald-CLUT)
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 
@@ -34,14 +34,6 @@
 <img src="examples/mocha.png"/>
 </details>
 
-## Generating LUTs
-
-Requirements: `cargo-play`, `imagemagick`
-
-```bash
-cargo play generate.rs
-```
-
 ## Usage
 
 Images:
@@ -55,6 +47,18 @@ Videos:
 ```bash
 ffmpeg -i input.mkv -i luts/mocha.png -filter_complex '[0][1] haldclut' output.mp4
 ```
+
+### (Re)generating LUTs
+
+Requirements: [cargo-play](https://crates.io/crates/cargo-play)
+
+```bash
+cargo play generate.rs
+```
+
+## 💝 Thanks to
+
+- Gingeh for pioneering the process :)
 
 &nbsp;
 
