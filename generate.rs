@@ -1,5 +1,5 @@
 //# image = "0.24.6"
-//# catppuccin = "1.2.1"
+//# catppuccin = { git = "https://github.com/ozwaldorf/catppuccin-rust" }
 
 use std::{
     io::{stdout, Write},
