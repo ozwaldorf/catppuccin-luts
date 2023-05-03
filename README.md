@@ -39,13 +39,13 @@
 Images:
 
 ```bash
-magick input.png luts/mocha.png -hald-clut output.png
+magick input.png src/mocha.png -hald-clut output.png
 ```
 
 Videos:
 
 ```bash
-ffmpeg -i input.mkv -i luts/mocha.png -filter_complex '[0][1] haldclut' output.mp4
+ffmpeg -i input.mkv -i src/mocha.png -filter_complex '[0][1] haldclut' output.mp4
 ```
 
 ### (Re)generating LUTs

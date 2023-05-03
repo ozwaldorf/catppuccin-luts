@@ -16,7 +16,7 @@ fn main() {
     println!("Generating catppuccin LUTs: ");
 
     std::fs::create_dir("./palettes").ok();
-    std::fs::create_dir("./luts").ok();
+    std::fs::create_dir("./src").ok();
 
     for flavor in Flavour::into_iter() {
         // Get our colors and create an image buffer
@@ -43,7 +43,7 @@ fn main() {
         // Generate the LUT from the pallet image
         let output = Command::new("sh")
             .arg("-c")
-            .arg(format!("convert HALD:8 -duplicate 512 -attenuate 2 +noise Gaussian -quantize LAB +dither -remap {palette_path} -evaluate-sequence Mean luts/{name}.png"))
+            .arg(format!("convert HALD:8 -duplicate 512 -attenuate 2 +noise Gaussian -quantize LAB +dither -remap {palette_path} -evaluate-sequence Mean src/{name}.png"))
             .output()
             .expect("failed to execute process");
 
