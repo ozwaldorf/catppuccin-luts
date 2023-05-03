@@ -3,7 +3,6 @@
 
 use std::{
     io::{stdout, Write},
-    path::PathBuf,
     process::Command,
 };
 
@@ -14,39 +13,37 @@ use image::{
 };
 
 fn main() {
-    println!("Generating catppuccin pallets and LUTs: ");
+    println!("Generating catppuccin LUTs: ");
 
-    std::fs::create_dir("./pallets").ok();
+    std::fs::create_dir("./palettes").ok();
     std::fs::create_dir("./luts").ok();
 
     for flavor in Flavour::into_iter() {
         // Get our colors and create an image buffer
         let name = flavor.name();
-        print!("{name}: pallet ...");
+        print!("{name} ...");
         stdout().flush().ok();
 
         let colors: Vec<Colour> = flavor.colours().into_iter().collect();
         let len = colors.len() as u32;
-        let mut imgbuf = ImageBuffer::new(len, 1);
+        let mut palette = ImageBuffer::new(len, 1);
 
-        // Iterate over the coordinates and pixels of the image
-        for (pixel, color) in imgbuf.pixels_mut().zip(colors.into_iter()) {
+        //
+        for (pixel, color) in palette.pixels_mut().zip(colors.into_iter()) {
             let (r, g, b) = color.into();
             *pixel = Rgb([r, g, b]);
         }
 
         // Resize the image for convenience
-        let imgbuf = resize(&imgbuf, len * 20, 20, FilterType::Nearest);
-        let pallet = &format!("pallets/{name}.png");
-        imgbuf.save(pallet).unwrap();
-
-        print!("\r{name}: pallet ✓ lut ...");
-        stdout().flush().ok();
+        let palette_path = &format!("palettes/{name}.png");
+        resize(&palette, len * 20, 20, FilterType::Nearest)
+            .save(palette_path)
+            .expect("error saving pallet image");
 
         // Generate the LUT from the pallet image
         let output = Command::new("sh")
             .arg("-c")
-            .arg(format!("convert HALD:8 -duplicate 512 -attenuate 2 +noise Gaussian -quantize LAB +dither -remap {pallet} -evaluate-sequence Mean luts/{name}.png"))
+            .arg(format!("convert HALD:8 -duplicate 512 -attenuate 2 +noise Gaussian -quantize LAB +dither -remap {palette_path} -evaluate-sequence Mean luts/{name}.png"))
             .output()
             .expect("failed to execute process");
 
@@ -54,6 +51,6 @@ fn main() {
             panic!("magick: {}", String::from_utf8_lossy(&output.stderr));
         }
 
-        println!("\r{name}: pallet ✓ lut ✓  ");
+        println!("\r{name} ✓  ");
     }
 }
