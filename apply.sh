@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-src="$(dirname "$(realpath -s "$0")")/src"
+src="$( cd -- "$( dirname -- "$(readlink -f "${BASH_SOURCE[0]}" || ${BASH_SOURCE[0]})" )" &> /dev/null && pwd )/src"
 
 print_usage() {
   name=`basename $0`
