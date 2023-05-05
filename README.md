@@ -54,12 +54,20 @@ Videos:
 ffmpeg -i input.mkv -i src/noise_2/mocha.png -filter_complex '[0][1] haldclut' output.mp4
 ```
 
-### (Re)generating LUTs
+### Apply script
 
-Requirements: [cargo-play](https://crates.io/crates/cargo-play), [imagemagick](https://imagemagick.org)
+The script is an easy way to use the LUTs on an image. It accepts any number of images and some flavors to use.
 
 ```bash
-cargo play generate.rs
+./apply.sh -i image1.png -i image2.png -f "oled mocha macchiato frappe latte" 
+```
+
+### (Re)generating LUTs
+
+Requirements: [imagemagick](https://imagemagick.org)
+
+```bash
+./generate.sh lut.png 2 color1 color2 ...
 ```
 
 ## 💝 Thanks to
