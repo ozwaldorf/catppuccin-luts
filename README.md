@@ -62,6 +62,12 @@ The script is an easy way to use the LUTs on an image. It accepts any number of 
 ./apply.sh -i image1.png -i image2.png -f "oled mocha macchiato frappe latte" 
 ```
 
+The script can also be easily "installed" by symlinking it to `.local/bin`
+
+```bash
+ln -s `realpath apply.sh` ~/.local/bin/ctpify
+```
+
 ### (Re)generating LUTs
 
 Requirements: [imagemagick](https://imagemagick.org)
