@@ -21,23 +21,23 @@
 
 <details>
 <summary>🌻 Latte</summary>
-<img src="examples/latte.png"/>
+<img src="examples/simon-berger-unsplash-latte.png"/>
 </details>
 <details>
 <summary>🪴 Frappé</summary>
-<img src="examples/frappe.png"/>
+<img src="examples/simon-berger-unsplash-frappe.png"/>
 </details>
 <details>
 <summary>🌺 Macchiato</summary>
-<img src="examples/macchiato.png"/>
+<img src="examples/simon-berger-unsplash-macchiato.png"/>
 </details>
 <details>
 <summary>🌿 Mocha</summary>
-<img src="examples/mocha.png"/>
+<img src="examples/simon-berger-unsplash-mocha.png"/>
 </details>
 <details>
 <summary>⚫ Oled</summary>
-<img src="examples/oled.png"/>
+<img src="examples/simon-berger-unsplash-oled.png"/>
 </details>
 
 ## Usage
