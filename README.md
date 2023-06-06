@@ -15,6 +15,8 @@
 	<img src="examples/preview.png"/>
 </p>
 
+> NOTE: I created a blazingly fast standalone tool for creating and applying LUTs for popular/arbitrary color palettes: https://github.com/ozwaldorf/lutgen-rs
+
 ## Previews
 
 > Generated using `noise_2` variant
